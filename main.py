@@ -3,7 +3,7 @@ from JsonProcessing import JsonProcessing
 from ImageProcessing import ImageProcessing
 
 COLORS_PATH ='colorValues.json'
-REPORT_PATH = None
+REPORT_PATH = None # TODO Add your path 
 
 
 
