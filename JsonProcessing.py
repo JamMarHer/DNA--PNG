@@ -1,4 +1,6 @@
 import pickle
+import json
+import sys
 
 class JsonProcessing(object):
 
@@ -15,6 +17,18 @@ class JsonProcessing(object):
         assert(data, dict())
         self.data = data
 
+    def saveDNAinputAsOrderedJSON(path):
+        dataForJson = {'X':dict(), 'Y':dict(), 'MT':dict()}
+        for x in range(1, 23):
+            dataForJson[str(x)] = dict()
+        with open (path) as f:
+            data = f.readlines()
+        for line in data:
+            tline = line.replace('\n', '').split('\t')
+            dataForJson[tline[1]][tline[0]] = {'position' : tline[2], 'genotype' : tline[3]}
+
+        with open("{}.json".format(path.split('.')[0]), "w") as fp:
+            json.dump(dataForJson, fp,sort_keys=True, indent=4, separators=(',', ': '))
 
     def getOrderedPositionList(self):
         listPosition = list()
