@@ -28,6 +28,7 @@ class ImageProcessing(object):
         print("Processing...")
         img = self.getImage(height, width, channels, self.genosToShow)
         img.show()
+        img.save('test.png')
         print("Genotype {} save...".format("all"))
         print("Done.")
 
