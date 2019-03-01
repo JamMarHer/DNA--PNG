@@ -40,8 +40,11 @@ Running this command should give you a full canvas painted with your DNA.
 ```terminal
 python main.py /exmaple/genome_v5_Full_20190120081726.txt
 ```
+<img src="exampleImages/all.png" width="400"/>
+
 You can also select a genotype in specific to be painted. For example (note the II for genotype. You can also add more than one):
 ```terminal
 python main.py /exmaple/genome_v5_Full_20190120081726.txt II 
 
 ```
+<img src="exampleImages/II.png" width="400"/>
