@@ -10,13 +10,11 @@ REPORT_PATH = None
 if __name__ == '__main__':
     jsonP = None
     if REPORT_PATH is None:
-        print("here")
         if (sys.argv[1:][0].split(".")[-1] != "txt"):
             # TODO eh it could technically in other format, good for now.
             print("Please make sure that the file is in txt format")
-            jsonP = JsonProcessing(sys.argv[1:][0])
         else:
-            print("Please provide an input file.")
+            jsonP = JsonProcessing(sys.argv[1:][0])
     else:
         jsonP = JsonProcessing(REPORT_PATH)
     jsonP.initialize()
