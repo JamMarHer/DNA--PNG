@@ -11,8 +11,8 @@ class ImageProcessing(object):
     def __init__(self, jp, colors, genosToShow=None):
         super(ImageProcessing, self).__init__()
         self.jp = jp
-        accert(jp, JsonProcessing())
-        accert(jp.isinitialized() == True)
+        assert jp, JsonProcessing()
+        assert (jp.isInitialized() == True)
         self.genosToShow = genosToShow
         self.colors = colors
 
@@ -21,12 +21,9 @@ class ImageProcessing(object):
         height = 700
         channels = 3
 
-        JsonP = JsonProcessing(self.DNAJSON)
-        #genodict, genoKeys = JsonP.getOrderedGenotypeKeyDict()
-        #genoorderedList = JsonP.getOrderedGenotypeList(genodict, genoKeys)
-        #JsonP.saveList("genotypeByPosition", genoorderedList)
+        genodict, genoKeys = self.jp.getOrderedGenotypeKeyDict()
+        self.genoList = self.jp.getOrderedGenotypeList(genodict, genoKeys)
 
-        self.genoList = JsonP.loadList("genotypeByPosition.dna")
         # Set the RGB values
         print("Processing...")
         img = self.getImage(height, width, channels, self.genosToShow)

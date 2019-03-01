@@ -14,13 +14,19 @@ class JsonProcessing(object):
 
     def __init__(self, path):
         super(JsonProcessing, self).__init__()
-        assert(path, str)
+        assert path, str()
         self.path = path
+        self.initialized = False
 
     def initialize(self):
         self.data = self.saveDNAinputAsOrderedJSON(self.path)
+        self.initialized = True
 
-    def saveDNAinputAsOrderedJSON(path):
+    def isInitialized(self):
+        return self.initialized
+
+    def saveDNAinputAsOrderedJSON(self, path):
+        print("Working...")
         dataForJson = {'X':dict(), 'Y':dict(), 'MT':dict()}
         for x in range(1, 23):
             dataForJson[str(x)] = dict()
@@ -32,6 +38,7 @@ class JsonProcessing(object):
 
         with open("{}.json".format(path.split('.')[0]), "w") as fp:
             json.dump(dataForJson, fp,sort_keys=True, indent=4, separators=(',', ': '))
+        print("Done formating DNA report.")
         return dataForJson
 
     def getOrderedPositionList(self):
@@ -73,3 +80,8 @@ class JsonProcessing(object):
         with open (name, 'rb') as fp:
             itemlist = pickle.load(fp)
         return itemlist
+
+    def getJSONasDic(self, path):
+        with open(path) as f:
+            data = json.loads(f.read())
+        return data
