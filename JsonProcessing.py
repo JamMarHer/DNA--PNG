@@ -15,7 +15,10 @@ class JsonProcessing(object):
     def __init__(self, path):
         super(JsonProcessing, self).__init__()
         assert(path, str)
-        self.data = self.saveDNAinputAsOrderedJSON(path)
+        self.path = path
+
+    def initialize(self):
+        self.data = self.saveDNAinputAsOrderedJSON(self.path)
 
     def saveDNAinputAsOrderedJSON(path):
         dataForJson = {'X':dict(), 'Y':dict(), 'MT':dict()}
