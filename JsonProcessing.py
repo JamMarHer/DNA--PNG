@@ -5,17 +5,17 @@ import sys
 class JsonProcessing(object):
 
     """ This class provides multiple functions for processing a DNA input that is
-        already in JSON ordered format:
+        already in original format then it orders it in json:
         Chormosome (int):
             RSID(str):
                 Position(str)
                 Genotype(str)
     """
 
-    def __init__(self, data):
+    def __init__(self, path):
         super(JsonProcessing, self).__init__()
-        assert(data, dict())
-        self.data = data
+        assert(data, str)
+        self.data = self.saveDNAinputAsOrderedJSON(path)
 
     def saveDNAinputAsOrderedJSON(path):
         dataForJson = {'X':dict(), 'Y':dict(), 'MT':dict()}
@@ -29,6 +29,7 @@ class JsonProcessing(object):
 
         with open("{}.json".format(path.split('.')[0]), "w") as fp:
             json.dump(dataForJson, fp,sort_keys=True, indent=4, separators=(',', ': '))
+        return dataForJson
 
     def getOrderedPositionList(self):
         listPosition = list()
