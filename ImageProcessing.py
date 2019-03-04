@@ -17,6 +17,7 @@ class ImageProcessing(object):
         self.colors = colors
 
     def displayImage(self):
+        # TODO
         width = 700
         height = 700
         channels = 3
@@ -28,7 +29,7 @@ class ImageProcessing(object):
         print("Processing...")
         img = self.getImage(height, width, channels, self.genosToShow)
         img.show()
-        img.save('test.png')
+        #TODO
         print("Genotype {} save...".format("all"))
         print("Done.")
 
