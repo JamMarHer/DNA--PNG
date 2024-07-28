@@ -1,27 +1,52 @@
-import sys
-from JsonProcessing import JsonProcessing
-from ImageProcessing import ImageProcessing
+__all__ = ("DNAPNGArgumentParser", "main")
 
-COLORS_PATH = "colorValues.json"
-REPORT_PATH = None
+from tap import Tap
+
+from dnapng.dnapng import DNAPNG
+from dnapng.models import GENOTYPES, Genotype
+
+
+class DNAPNGArgumentParser(Tap):
+
+    dna_report: str
+    color_config: str
+    genotypes: list[str]
+
+    def configure(self) -> None:
+        self.add_argument(
+            "-r",
+            "--dna-report",
+            type=str,
+            help="Select the DNA report file to use.",
+            required=True,
+        )
+        self.add_argument(
+            "-cc",
+            "--color-config",
+            type=str,
+            help="Select the color configuration file to use.",
+            required=True,
+        )
+        self.add_argument(
+            "-g",
+            "--genotypes",
+            type=str,
+            choices=GENOTYPES,
+            help=(
+                "The genotype (s) you wish the program to paint. If not specified,"
+                " then all genotypes are painted."
+            ),
+            required=False,
+        )
+
 
 def main() -> None:
-    jsonP = None
+    args = DNAPNGArgumentParser().parse_args()
 
-    fromCommand = False
-    if REPORT_PATH is None:
-        if sys.argv[1:][0].split(".")[-1] != "txt":
-            # TODO eh it could technically be in other format, good for now.
-            print("Please make sure that the file is in txt format")
-        else:
-            fromCommand = True
-            jsonP = JsonProcessing(sys.argv[1:][0])
-    else:
-        jsonP = JsonProcessing(REPORT_PATH)
-    jsonP.initialize()
-    colorsDic = jsonP.getJSONasDic(COLORS_PATH)
-    if fromCommand:
-        imageP = ImageProcessing(jsonP, colorsDic, sys.argv[2:])
-    else:
-        imageP = ImageProcessing(jsonP, colorsDic, sys.argv[1:])
-    imageP.displayImage()
+    dna_png = DNAPNG(
+        args.dna_report,
+        args.color_config,
+        tuple(Genotype(x) for x in args.genotypes) if args.genotypes else None,
+    )
+
+    dna_png.displayImage()
