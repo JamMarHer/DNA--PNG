@@ -5,7 +5,7 @@ description = ""
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "Jam Hernandez Quiceno", email = "jammarher369@gmail.com" }]
-dependencies = []
+dependencies = ["numpy>=2.0.1", "pillow>-10.4.0"]
 
 [project.scripts]
 dnapng = "dnapng.__main__:main"
