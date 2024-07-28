@@ -4,15 +4,11 @@ import itertools
 import json
 import math
 
-from PIL import Image
 import numpy as np
 import numpy.typing as npt
-from dnapng.models import (
-    Chromosome,
-    DNAReportInfo,
-    Genotype,
-    GenotypeEntry,
-)
+from PIL import Image
+
+from dnapng.models import Chromosome, DNAReportInfo, Genotype, GenotypeEntry
 
 NA = "--"
 
