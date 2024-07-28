@@ -2,17 +2,16 @@ import sys
 from JsonProcessing import JsonProcessing
 from ImageProcessing import ImageProcessing
 
-COLORS_PATH ='colorValues.json'
+COLORS_PATH = "colorValues.json"
 REPORT_PATH = None
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     jsonP = None
 
     fromCommand = False
     if REPORT_PATH is None:
-        if (sys.argv[1:][0].split(".")[-1] != "txt"):
+        if sys.argv[1:][0].split(".")[-1] != "txt":
             # TODO eh it could technically be in other format, good for now.
             print("Please make sure that the file is in txt format")
         else:

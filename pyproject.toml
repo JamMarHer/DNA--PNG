@@ -1,0 +1,11 @@
+[project]
+name = "dnapng"
+version = "1.0.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Jam Hernandez Quiceno", email = "jammarher369@gmail.com" }]
+dependencies = []
+
+[project.scripts]
+dnapng = "dnapng.__main__:main"
