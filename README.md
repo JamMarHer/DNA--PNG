@@ -6,45 +6,42 @@ The layout report is in the following format (23andMe):
 ```
 rsid            chromosome	    position	genotype
 rs548049170     1                   69869       TT
-...
 ```
-Note: To play around with this data we provide functions to turn it into a JSON file. 
-```json
-"1": {
-  "rs548049170": {
-      "genotype": "TT",
-      "position": "69869"
-  }
-}
- ```
- ## Color Selection
+
+## Color Selection
 We can select a different color per each genotype present in the input. For example:
 ```json
 {
-  "CC": {
-    "r":255,
-    "g":210,
-    "b":170
-  },
-  "A": {
-    "r":16,
-    "g":215,
-    "b":162
-  },
+  "CC": [
+    255,
+    210,
+    170
+  ],
+  "A": [
+    16,
+    215,
+    162
+  ],
   ...
 }
- ```
- 
+```
+
+## Install
+```bash
+python3.12 -m venv venv & source venv/bin/activate && pip install .
+```
+
+
 ## How to run
+
 Running this command should give you a full canvas painted with your DNA.
-```terminal
-python main.py /example/genome_v5_Full_20190120081726.txt
+```bash
+dnapng -r randomDNAReport.txt -cc colorValues.json
 ```
 <img src="exampleImages/all.png" width="400"/>
 
 You can also select a genotype in specific to be painted. For example (note the II for genotype. You can also add more than one):
-```terminal
-python main.py /example/genome_v5_Full_20190120081726.txt II 
-
+```bash
+dnapng -r randomDNAReport.txt -cc colorValues.json II
 ```
 <img src="exampleImages/II.png" width="400"/>
